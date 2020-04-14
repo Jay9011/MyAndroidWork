@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.linear1);
 
+        int ss = 100;
+        String tt = "하핫!";
+
         Button1 = (ToggleButton) findViewById(R.id.visibleButton);
         TargetText = (TextView) findViewById(R.id.textView3);
 
