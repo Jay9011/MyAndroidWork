@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.linear1);
 
         int ss = 100;
-        String tt = "하핫!";
+        String tt = "하핫! (코쓱)";
 
         Button1 = (ToggleButton) findViewById(R.id.visibleButton);
         TargetText = (TextView) findViewById(R.id.textView3);
