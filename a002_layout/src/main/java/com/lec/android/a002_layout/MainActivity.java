@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         int ss = 100;
         String tt = "하핫! (코쓱)";
+        char ch = 'a';
+        short s = 200;
 
         Button1 = (ToggleButton) findViewById(R.id.visibleButton);
         TargetText = (TextView) findViewById(R.id.textView3);
