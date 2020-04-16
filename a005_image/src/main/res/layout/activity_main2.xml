@@ -32,12 +32,14 @@
             <ImageView
                 android:id="@+id/iv2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:srcCompat="@android:drawable/arrow_down_float" />
 
             <ImageView
                 android:id="@+id/iv3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:srcCompat="@android:drawable/ic_dialog_dialer" />
         </LinearLayout>
     </ScrollView>
 
