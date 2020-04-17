@@ -20,13 +20,13 @@
         android:theme="@style/AppTheme"
         android:requestLegacyExternalStorage="true"> <!-- 근본적인 해결책은 아님!! -->
         <activity android:name=".Main4Activity">
-        </activity>
-        <activity android:name=".Main3Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Main3Activity">
         </activity>
         <activity android:name=".Main2Activity" />
         <activity android:name=".MainActivity" />
