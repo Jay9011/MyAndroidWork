@@ -53,5 +53,20 @@ public class Main3Activity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {  // 정상 반환의 경우
+            switch (requestCode) {
+                case REQUEST_CODE_CALC :
+                    int a = data.getIntExtra("plus", 0);
+                    int b = data.getIntExtra("minus", 0);
+
+                    tvResult.setText(requestCode + "] 받아온 값 : " + a + " : " + b);
+                    break;
+
+            }
+        } else {
+                                        // 정상 반환이 아닌 경우 처리
+        }
+
     }
 } // Main3Activity
