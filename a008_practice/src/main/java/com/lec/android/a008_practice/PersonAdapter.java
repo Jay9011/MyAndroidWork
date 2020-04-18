@@ -1,9 +1,11 @@
 package com.lec.android.a008_practice;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,14 +45,14 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvName, tvAddress, tvAge;
-        Button btnDelete;
+        ImageButton btnDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvName = itemView.findViewById(R.id.etName);
-            tvAge = itemView.findViewById(R.id.etAge);
-            tvAddress = itemView.findViewById(R.id.etAddress);
+            tvName = itemView.findViewById(R.id.tvName);
+            tvAge = itemView.findViewById(R.id.tvAge);
+            tvAddress = itemView.findViewById(R.id.tvAdd);
 
             btnDelete = itemView.findViewById(R.id.btnDelete);
 
