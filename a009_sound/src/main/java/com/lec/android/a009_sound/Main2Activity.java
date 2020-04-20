@@ -51,17 +51,34 @@ public class Main2Activity extends AppCompatActivity {
             // sb 값이 변경될 때 마다 호출
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // TODO
+                // 음악이 끝까지 연주 완료 되었다면.
+                if (seekBar.getMax() == progress && !fromUser) {
+
+                    btnPlay.setVisibility(View.VISIBLE);
+                    btnPause.setVisibility(View.INVISIBLE);
+                    btnResume.setVisibility(View.INVISIBLE);
+                    btnStop.setVisibility(View.INVISIBLE);
+
+                    if (mp != null) mp.stop();
+                }
             }
+
             // 드래그 시작 (트래킹) 하면 호출
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO
+                isTracking = true;
             }
+
             // 드래그 마치면 (트래킹 종료) 하면 호출
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // TODO
+                pos = seekBar.getProgress();
+
+                if (mp != null) {
+                    mp.seekTo(pos);
+                }
+
+                isTracking = false;
             }
         }); // end setOnSeekBarChangeListener
 
@@ -100,6 +117,52 @@ public class Main2Activity extends AppCompatActivity {
                 btnStop.setVisibility(View.VISIBLE);
             }
         }); // end btnPlay.setOnClickListener
+
+        btnStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 음악 종료
+                pos = 0;
+                if (mp != null) {
+                    mp.stop();          // 재생 멈춤
+                    mp.seekTo(0); // 음악의 처음으로 이동
+                    mp.release();       // 자원해제
+                    mp = null;
+                }
+
+                sb.setProgress(0);  // SeekBar 초기 위치로
+
+                btnPlay.setVisibility(View.VISIBLE);
+                btnPause.setVisibility(View.INVISIBLE);
+                btnResume.setVisibility(View.INVISIBLE);
+                btnStop.setVisibility(View.INVISIBLE);
+            } // end onClick
+        }); // end btnStop.setOnClickListener
+
+        // 일시 중지
+        btnPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pos = mp.getCurrentPosition();  // 현재 재생중이던 위치 저장.
+                mp.pause();     // 일시정지
+
+                btnPause.setVisibility(View.INVISIBLE);
+                btnResume.setVisibility(View.VISIBLE);
+            } // end onClick
+        }); // end btnPause.setOnClickListener
+
+        // 멈춘 시점부터 재시작
+        btnResume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mp.seekTo(pos); // 일시정지 때 저장해뒀던 pos 위치로 이동.
+                mp.start();     // 재생 시작
+                new MyThread().start(); // SeekBar 이동 시작 (쓰레드)
+
+                btnPause.setVisibility(View.VISIBLE);
+                btnResume.setVisibility(View.INVISIBLE);
+            } // end onClick
+        }); // end btnResume.setOnClickListener
 
     } // end onCreate
 
