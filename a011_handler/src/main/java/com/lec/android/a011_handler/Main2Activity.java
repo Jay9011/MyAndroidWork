@@ -33,5 +33,13 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        tvMainValue = findViewById(R.id.tvMainValue);
+        tvBackValue1 = findViewById(R.id.tvBackValue1);
+        tvBackValue2 = findViewById(R.id.tvBackValue2);
+        tvBackValue3 = findViewById(R.id.tvBackValue3);
+        tvBackValue4 = findViewById(R.id.tvBackValue4);
+
+
     }
 }
