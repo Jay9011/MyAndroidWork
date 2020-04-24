@@ -2,14 +2,18 @@ package com.lec.android.a017_location;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
@@ -56,5 +60,45 @@ public class Main4Activity extends AppCompatActivity {
             }
         });
 
+        MapsInitializer.initialize(this);
+
+        // 버튼 누르면 입력된 좌표로 GoogleMap 이동
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLocationsService();
+            } // end onClick
+        }); // end btnMap.setOnClickListener
+
+        // 입력된 좌표 위에 마커 생성
+        btnMarker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double lat = Double.parseDouble(etLatitude.getText().toString());
+                double lng = Double.parseDouble(etLongitude.getText().toString());
+
+                LatLng curPoint = new LatLng(lat, lng);
+
+                MarkerOptions markerOptions = new MarkerOptions()
+                        .position(curPoint)
+                        .title(etMarker.getText().toString().trim() + "\n")
+                        .snippet("◎" + String.format("%.3f %.3f", lat, lng));
+
+                map.addMarker(markerOptions);
+            } // end onClick()
+        }); // end btnMarker.setOnClickListener()
+
     } // end onCreate
+
+    public void startLocationsService() {
+        double lat = Double.parseDouble(etLatitude.getText().toString());
+        double lng = Double.parseDouble(etLongitude.getText().toString());
+
+        LatLng curPoint = new LatLng(lat, lng);
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 15));
+
+    } // end startLocationsService()
+
+
+
 } // end Main4Activity
